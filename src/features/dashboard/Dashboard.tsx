@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material';
-import ExtraLeague from './ExtraLeague';
+import ExtraLeague from './ExtraLeague/ExtraLeague';
 import FirstLeague from './FirstLeague';
 import SecondLeague from './SecondLeague';
 
