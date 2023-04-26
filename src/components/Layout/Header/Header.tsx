@@ -47,7 +47,7 @@ const Header = () => {
         alignItems="center"
         spacing={2}
       >
-        SEARCH
+        [ SEARCH ]
       </Stack>
     </HeaderWrapper>
   );

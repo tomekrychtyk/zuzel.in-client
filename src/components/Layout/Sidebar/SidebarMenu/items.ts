@@ -27,11 +27,11 @@ const menuItems: MenuItems[] = [
         items: [
           {
             name: 'Terminarz',
-            link: '/polish-extra-leage/fixtures'
+            link: '/polish-extra-league/fixtures'
           },
           {
             name: 'Tabela',
-            link: '/polish-extra-leage/standings'
+            link: '/polish-extra-league/standings'
           }
         ]
       }
