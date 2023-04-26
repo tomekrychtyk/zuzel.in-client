@@ -169,6 +169,7 @@ const renderItems = (items: MenuItem[], path: string) => {
               key={item.name}
               name={item.name}
               icon={item.icon}
+              link={item.link}
             >
               {item.items ? (
                 <SubMenuWrapper>
@@ -188,6 +189,7 @@ const renderItems = (items: MenuItem[], path: string) => {
                         name={subItem.name}
                         key={subItem.name}
                         icon={subItem.icon}
+                        link={subItem.link}
                       />
                     );
                   })}

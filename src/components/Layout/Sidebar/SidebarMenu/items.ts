@@ -24,15 +24,14 @@ const menuItems: MenuItems[] = [
       {
         name: 'PGE Ekstraliga',
         icon: AnalyticsTwoToneIcon,
-        link: '',
         items: [
           {
             name: 'Terminarz',
-            link: '/fixtures'
+            link: '/polish-extra-leage/fixtures'
           },
           {
             name: 'Tabela',
-            link: '/standings'
+            link: '/polish-extra-leage/standings'
           }
         ]
       }
@@ -42,6 +41,7 @@ const menuItems: MenuItems[] = [
     heading: 'Inne rozgrywki w Polsce',
     items: [
       {
+        icon: AnalyticsTwoToneIcon,
         name: 'IMP',
         link: '/imp'
       }

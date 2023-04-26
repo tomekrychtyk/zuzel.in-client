@@ -2,6 +2,7 @@ import { FC, ReactNode } from 'react';
 import { Box, alpha, lighten, useTheme } from '@mui/material';
 import { Outlet } from 'react-router';
 import Sidebar from './Sidebar/Sidebar';
+import Header from './Header/Header';
 
 interface LayoutProps {
   children?: ReactNode;
@@ -25,6 +26,7 @@ const Layout: FC<LayoutProps> = () => {
           }
         }}
       >
+        <Header />
         <Sidebar />
         <Box sx={{ position: 'relative', zIndex: 5, display: 'block' }}>
           <Box display="block">
