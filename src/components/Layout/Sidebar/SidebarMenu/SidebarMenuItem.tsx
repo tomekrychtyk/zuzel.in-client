@@ -55,7 +55,7 @@ const SidebarMenuItem: FC<SidebarMenuItemProps> = ({
     <ListItem component="div" key={name} {...rest}>
       <Button
         disableRipple
-        onClick={() => null}
+        onClick={toggleMenu}
         href={link}
         startIcon={Icon && <Icon />}
       >

@@ -1,3 +1,11 @@
+import { Helmet } from 'react-helmet-async';
+
 export default function Standings() {
-  return <div>Standings</div>;
+  return (
+    <>
+      <Helmet>
+        <title>PGE Ekstraliga :: Tabela</title>
+      </Helmet>
+    </>
+  );
 }
