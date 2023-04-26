@@ -1,5 +1,19 @@
+import { forwardRef } from 'react';
 import { alpha, createTheme, darken } from '@mui/material';
+import {
+  Link as RouterLink,
+  LinkProps as RouterLinkProps
+} from 'react-router-dom';
+import { LinkProps } from '@mui/material/Link';
 import type {} from '@mui/lab/themeAugmentation';
+
+const LinkBehavior = forwardRef<
+  HTMLAnchorElement,
+  Omit<RouterLinkProps, 'to'> & { href: RouterLinkProps['to'] }
+>((props, ref) => {
+  const { href, ...other } = props;
+  return <RouterLink ref={ref} to={href} {...other} />;
+});
 
 const themeColors = {
   primary: '#CB3C1D',
@@ -629,7 +643,8 @@ const theme = createTheme({
     },
     MuiButtonBase: {
       defaultProps: {
-        disableRipple: false
+        disableRipple: false,
+        LinkComponent: LinkBehavior
       },
       styleOverrides: {
         root: {
@@ -744,8 +759,9 @@ const theme = createTheme({
     },
     MuiLink: {
       defaultProps: {
-        underline: 'hover'
-      }
+        underline: 'hover',
+        component: LinkBehavior
+      } as LinkProps
     },
     MuiLinearProgress: {
       styleOverrides: {

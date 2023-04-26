@@ -1,9 +1,17 @@
 import { Suspense, lazy } from 'react';
 import { RouteObject } from 'react-router';
 import Layout from '@/components/Layout/Layout';
+import SuspenseLoader from '@/components/SuspenseLoader/SuspenseLoader';
 
-const PolishExtraLeagueStandings = lazy(
-  () => import('./features/polish-extra-league/Standings')
+const Loader = (Component: any) => (props: any) =>
+  (
+    <Suspense fallback={<SuspenseLoader />}>
+      <Component {...props} />
+    </Suspense>
+  );
+
+const PolishExtraLeagueStandings = Loader(
+  lazy(() => import('./features/polish-extra-league/Standings'))
 );
 
 const router: RouteObject[] = [
