@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import {
   List,
   ListItem,
@@ -5,8 +6,15 @@ import {
   Box,
   Typography,
   Card,
+  ListItemText,
+  Divider,
+  Avatar,
+  ListItemAvatar,
   useTheme
 } from '@mui/material';
+import nextMatches from './data/next-matches';
+
+const LOGOS_BUCKET_URL = 'https://s3.eu-central-1.amazonaws.com/zuzel.in/logos';
 
 export default function NextMatches() {
   const theme = useTheme();
@@ -35,49 +43,117 @@ export default function NextMatches() {
         <Typography variant="h4">Nadchodzące mecze</Typography>
       </Box>
       <List disablePadding>
-        <ListSubheader
-          color="primary"
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between'
-          }}
-        >
-          <Box>27 kwietnia 2023</Box>
-        </ListSubheader>
-        <ListItem
-          sx={{
-            py: 2
-          }}
-        >
-          Krosno - Toruń
-        </ListItem>
-      </List>
-      <List disablePadding>
-        <ListSubheader
-          color="primary"
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between'
-          }}
-        >
-          <Box>28 kwietnia 2023</Box>
-        </ListSubheader>
-        <ListItem
-          sx={{
-            py: 2
-          }}
-        >
-          Leszno - Toruń
-        </ListItem>
-        <ListItem
-          sx={{
-            py: 2
-          }}
-        >
-          Gorzów - Lublin
-        </ListItem>
+        {nextMatches.map((matchDay) => {
+          return (
+            <Fragment key={matchDay.date}>
+              <ListSubheader
+                color="primary"
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between'
+                }}
+              >
+                {matchDay.date}
+              </ListSubheader>
+              <Divider />
+              {matchDay.matches.map((match) => {
+                return (
+                  <Fragment key={match.id}>
+                    <ListItem
+                      sx={{
+                        py: 2,
+                        display: 'flex',
+                        justifyContent: 'space-between'
+                      }}
+                    >
+                      <ListItemAvatar
+                        sx={{
+                          minWidth: 'auto',
+                          mr: 2,
+                          mb: { xs: 2, sm: 0 }
+                        }}
+                      >
+                        <Avatar
+                          sx={{
+                            width: 42,
+                            height: 42
+                          }}
+                          alt="Krosno"
+                          src={`${LOGOS_BUCKET_URL}/${match.homeLogo}`}
+                        />
+                      </ListItemAvatar>
+                      <ListItemText
+                        sx={{
+                          flexGrow: 0,
+                          maxWidth: '50%',
+                          flexBasis: '50%'
+                        }}
+                        disableTypography
+                        primary={
+                          <Typography color="text.primary" variant="h5">
+                            {match.home}
+                          </Typography>
+                        }
+                      />
+                      <ListItemText
+                        sx={{
+                          flexGrow: 0,
+                          maxWidth: '50%',
+                          flexBasis: '50%'
+                        }}
+                        disableTypography
+                        primary={
+                          <Typography
+                            color="text.primary"
+                            variant="h5"
+                            sx={{ textAlign: 'center' }}
+                          >
+                            - : -
+                          </Typography>
+                        }
+                      />
+                      <ListItemText
+                        sx={{
+                          flexGrow: 0,
+                          maxWidth: '50%',
+                          flexBasis: '50%'
+                        }}
+                        disableTypography
+                        primary={
+                          <Typography
+                            color="text.primary"
+                            variant="h5"
+                            sx={{ textAlign: 'right' }}
+                          >
+                            {match.away}
+                          </Typography>
+                        }
+                      />
+                      <ListItemAvatar
+                        sx={{
+                          minWidth: 'auto',
+                          ml: 2,
+                          mb: { xs: 2, sm: 0 }
+                        }}
+                      >
+                        <Avatar
+                          sx={{
+                            width: 42,
+                            height: 42
+                          }}
+                          alt={match.away}
+                          src={`${LOGOS_BUCKET_URL}/${match.awayLogo}`}
+                        />
+                      </ListItemAvatar>
+                    </ListItem>
+                    <Divider />
+                  </Fragment>
+                );
+              })}
+            </Fragment>
+          );
+        })}
       </List>
     </Card>
   );
