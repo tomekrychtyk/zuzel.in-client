@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import {
   useTheme,
   styled,
@@ -13,9 +14,21 @@ import {
   TableBody,
   Button
 } from '@mui/material';
-import table from './data/table';
 
 const LOGOS_BUCKET_URL = 'https://s3.eu-central-1.amazonaws.com/zuzel.in/logos';
+
+interface TableItem {
+  place: number;
+  name: string;
+  matches: number;
+  points: number;
+  smallPoints: string;
+  logo: string;
+}
+
+type Props = {
+  data: TableItem[];
+};
 
 const TableWrapper = styled(Table)(
   () => `
@@ -25,9 +38,9 @@ const TableWrapper = styled(Table)(
   `
 );
 
-export default function LeagueTable() {
+const LeagueTable: FC<Props> = ({ data }) => {
   const theme = useTheme();
-  table.sort((a, b) => {
+  data.sort((a, b) => {
     return a.place > b.place ? 1 : -1;
   });
   return (
@@ -62,7 +75,7 @@ export default function LeagueTable() {
         <TableContainer sx={{ pt: 1 }}>
           <TableWrapper>
             <TableBody>
-              {table.map(({ name, points, logo }) => {
+              {data.map(({ name, points, logo }) => {
                 return (
                   <TableRow hover key={name}>
                     <TableCell>
@@ -102,4 +115,6 @@ export default function LeagueTable() {
       </Box>
     </Card>
   );
-}
+};
+
+export default LeagueTable;

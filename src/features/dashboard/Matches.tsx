@@ -1,24 +1,44 @@
-import { Fragment } from 'react';
+import { Fragment, FC } from 'react';
 import {
-  List,
-  ListItem,
-  ListSubheader,
-  Box,
-  Typography,
   Card,
-  ListItemText,
-  Divider,
-  Avatar,
+  Typography,
+  Box,
+  List,
+  ListSubheader,
+  ListItem,
   ListItemAvatar,
+  ListItemText,
+  Avatar,
+  Divider,
   Button,
   useTheme
 } from '@mui/material';
-import nextMatches from './data/next-matches';
+import Label from '@/components/Label/Label';
 
 const LOGOS_BUCKET_URL = 'https://s3.eu-central-1.amazonaws.com/zuzel.in/logos';
 
-export default function NextMatches() {
+interface MatchData {
+  id: number;
+  home: string;
+  away: string;
+  result?: string;
+  homeLogo?: string;
+  awayLogo?: string;
+  live?: boolean;
+}
+
+interface MatchesData {
+  date: string;
+  matches: MatchData[];
+}
+
+type Props = {
+  data: MatchesData[];
+};
+
+const Matches: FC<Props> = ({ data }) => {
   const theme = useTheme();
+
   return (
     <Card
       sx={{
@@ -45,11 +65,11 @@ export default function NextMatches() {
           >
             PGE Ekstraliga
           </Typography>
-          <Typography variant="h4">Nadchodzące mecze</Typography>
+          <Typography variant="h4">Ostatnie mecze</Typography>
         </Box>
         <Divider />
         <List disablePadding>
-          {nextMatches.map((matchDay) => {
+          {data.map((matchDay) => {
             return (
               <Fragment key={matchDay.date}>
                 <ListSubheader
@@ -68,11 +88,20 @@ export default function NextMatches() {
                     <Fragment key={match.id}>
                       <ListItem
                         sx={{
+                          position: 'relative',
                           py: 2,
                           display: 'flex',
-                          justifyContent: 'space-between'
+                          justifyContent: 'space-between',
+                          background: match.live
+                            ? `${theme.colors.gradients.black2}`
+                            : ''
                         }}
                       >
+                        {match.live ? (
+                          <Label centeredAbsolute color="warning">
+                            LIVE
+                          </Label>
+                        ) : null}
                         <ListItemAvatar
                           sx={{
                             minWidth: 'auto',
@@ -113,9 +142,9 @@ export default function NextMatches() {
                             <Typography
                               color="text.primary"
                               variant="h5"
-                              sx={{ textAlign: 'center' }}
+                              sx={{ textAlign: 'center', mt: 2 }}
                             >
-                              - : -
+                              {match.result}
                             </Typography>
                           }
                         />
@@ -167,4 +196,6 @@ export default function NextMatches() {
       </Box>
     </Card>
   );
-}
+};
+
+export default Matches;

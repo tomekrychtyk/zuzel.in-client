@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
 import ExtraLeague from './ExtraLeague/ExtraLeague';
-import FirstLeague from './FirstLeague';
-import SecondLeague from './SecondLeague';
+import LeagueOne from './LeagueOne/LeagueOne';
+import LeagueTwo from './LeagueTwo/LeagueTwo';
 
 export default function Dashboard() {
   return (
@@ -18,8 +18,8 @@ export default function Dashboard() {
     >
       <Grid item xs={12}>
         <ExtraLeague />
-        <FirstLeague />
-        <SecondLeague />
+        <LeagueOne sx={{ pt: '32px' }} />
+        <LeagueTwo sx={{ pt: '32px' }} />
       </Grid>
     </Grid>
   );
