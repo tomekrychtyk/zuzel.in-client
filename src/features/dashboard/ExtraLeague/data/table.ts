@@ -24,7 +24,7 @@ const table = [
     logo: 'gorzow_128.png'
   },
   {
-    place: 4,
+    place: 5,
     name: 'Platinum Motor Lublin',
     matches: 1,
     points: 2,
@@ -32,7 +32,7 @@ const table = [
     logo: 'lublin_128.png'
   },
   {
-    place: 5,
+    place: 7,
     name: 'For Nature Solutions KS Apator Toruń',
     matches: 2,
     points: 2,
@@ -48,7 +48,7 @@ const table = [
     logo: 'czestochowa_128.png'
   },
   {
-    place: 7,
+    place: 8,
     name: 'ZOOLeszcz GKM Grudziądz',
     matches: 3,
     points: 1,
@@ -56,10 +56,10 @@ const table = [
     logo: 'grudziadz_128.png'
   },
   {
-    place: 8,
+    place: 4,
     name: 'Cellfast Wilki Krosno',
     matches: 1,
-    points: 0,
+    points: 2,
     smallPoints: '-2',
     logo: 'krosno_128.png'
   }

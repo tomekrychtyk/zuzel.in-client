@@ -5,6 +5,7 @@ import {
   alpha,
   styled,
   Divider,
+  Link,
   useTheme,
   lighten
 } from '@mui/material';
@@ -49,7 +50,11 @@ export default function Sidebar() {
           >
             <Box display="flex">
               <SportsMotorsportsIcon />
-              <Box sx={{ pl: '8px' }}>ZUZEL.IN</Box>
+              <Box sx={{ pl: '8px' }}>
+                <Link href="/" sx={{ color: theme.colors.alpha.trueWhite[70] }}>
+                  ZUZEL.IN
+                </Link>
+              </Box>
             </Box>
           </Box>
         </Box>

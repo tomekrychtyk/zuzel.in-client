@@ -1,5 +1,26 @@
 const lastMatches = [
   {
+    date: '27 kwietnia 2023',
+    matches: [
+      {
+        id: 6,
+        home: 'Lublin',
+        away: 'Wrocław',
+        homeLogo: 'lublin_128.png',
+        awayLogo: 'wroclaw_128.png',
+        result: '0 : 0'
+      },
+      {
+        id: 5,
+        home: 'Krosno',
+        away: 'Toruń',
+        homeLogo: 'krosno_128.png',
+        awayLogo: 'torun_128.png',
+        result: '50 : 40'
+      }
+    ]
+  },
+  {
     date: '23 kwietnia 2023',
     matches: [
       {
@@ -30,19 +51,6 @@ const lastMatches = [
         result: '45 : 45',
         homeLogo: 'czestochowa_128.png',
         awayLogo: 'gorzow_128.png'
-      }
-    ]
-  },
-  {
-    date: '18 kwietnia 2023',
-    matches: [
-      {
-        id: 4,
-        home: 'Gorzów Wlkp.',
-        away: 'Grudziądz',
-        result: '51 : 39',
-        homeLogo: 'gorzow_128.png',
-        awayLogo: 'grudziadz_128.png'
       }
     ]
   }

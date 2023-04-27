@@ -10,6 +10,7 @@ import {
   Divider,
   Avatar,
   ListItemAvatar,
+  Button,
   useTheme
 } from '@mui/material';
 import nextMatches from './data/next-matches';
@@ -161,7 +162,9 @@ export default function NextMatches() {
           })}
         </List>
       </Box>
-      <Box>dsfsdf</Box>
+      <Box sx={{ display: 'flex', justifyContent: 'center', my: 2 }}>
+        <Button variant="outlined">Pokaż więcej</Button>
+      </Box>
     </Card>
   );
 }
