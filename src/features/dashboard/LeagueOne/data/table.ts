@@ -1,67 +1,67 @@
 const table = [
   {
     place: 1,
-    name: 'Betard Sparta Wrocław',
+    name: 'Enea Falubaz Zielona Góra',
     matches: 2,
     points: 4,
     smallPoints: '+28',
-    logo: 'wroclaw_128.png'
+    logo: 'zielona_gora_128.png'
   },
   {
     place: 2,
-    name: 'Fogo Unia Leszno',
+    name: 'Abramczyk PoloniaBydgoszcz',
     matches: 3,
     points: 4,
     smallPoints: '-2',
-    logo: 'leszno_128.png'
+    logo: 'bydgoszcz_128.png'
   },
   {
     place: 3,
-    name: 'Ebut.pl Stal Gorzów',
+    name: 'Arged Malesa Ostrów',
     matches: 3,
-    points: 3,
+    points: 4,
     smallPoints: '+8',
-    logo: 'gorzow_128.png'
-  },
-  {
-    place: 5,
-    name: 'Platinum Motor Lublin',
-    matches: 1,
-    points: 2,
-    smallPoints: '+8',
-    logo: 'lublin_128.png'
-  },
-  {
-    place: 7,
-    name: 'For Nature Solutions KS Apator Toruń',
-    matches: 2,
-    points: 2,
-    smallPoints: '-10',
-    logo: 'torun_128.png'
-  },
-  {
-    place: 6,
-    name: 'Tauron Włókniarz Częstochowa',
-    matches: 3,
-    points: 2,
-    smallPoints: '-8',
-    logo: 'czestochowa_128.png'
-  },
-  {
-    place: 8,
-    name: 'ZOOLeszcz GKM Grudziądz',
-    matches: 3,
-    points: 1,
-    smallPoints: '-22',
-    logo: 'grudziadz_128.png'
+    logo: 'ostrow_128.png'
   },
   {
     place: 4,
-    name: 'Cellfast Wilki Krosno',
+    name: 'H. Skrzydlewska Orzeł Łódź',
     matches: 1,
     points: 2,
+    smallPoints: '+8',
+    logo: 'lodz_128.png'
+  },
+  {
+    place: 5,
+    name: 'Zdunek Wybrzeże Gdańsk',
+    matches: 2,
+    points: 2,
+    smallPoints: '-10',
+    logo: 'gdansk_128.png'
+  },
+  {
+    place: 6,
+    name: 'ebebe PSŻ Poznań',
+    matches: 3,
+    points: 2,
+    smallPoints: '-8',
+    logo: 'poznan_128.png'
+  },
+  {
+    place: 7,
+    name: 'Trans MF Landshut Devils',
+    matches: 3,
+    points: 0,
+    smallPoints: '-22',
+    logo: 'landshut_128.png'
+  },
+  {
+    place: 8,
+    name: 'ROW Rybnik',
+    matches: 1,
+    points: 0,
     smallPoints: '-2',
-    logo: 'krosno_128.png'
+    logo: 'rybnik_128.png'
   }
 ];
 

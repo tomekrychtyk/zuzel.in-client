@@ -1,57 +1,56 @@
 const lastMatches = [
   {
-    date: '27 kwietnia 2023',
-    matches: [
-      {
-        id: 6,
-        home: 'Lublin',
-        away: 'Wrocław',
-        homeLogo: 'lublin_128.png',
-        awayLogo: 'wroclaw_128.png',
-        result: '8 : 4',
-        live: true
-      },
-      {
-        id: 5,
-        home: 'Krosno',
-        away: 'Toruń',
-        homeLogo: 'krosno_128.png',
-        awayLogo: 'torun_128.png',
-        result: '50 : 40'
-      }
-    ]
-  },
-  {
     date: '23 kwietnia 2023',
     matches: [
       {
         id: 1,
-        home: 'Toruń',
-        away: 'Wrocław',
-        result: '38 : 52',
-        homeLogo: 'torun_128.png',
-        awayLogo: 'wroclaw_128.png'
+        home: 'Bydgoszcz',
+        away: 'Rybnik',
+        result: '53 : 37',
+        homeLogo: 'bydgoszcz_128.png',
+        awayLogo: 'rybnik_128.png'
       },
       {
         id: 2,
-        home: 'Grudziądz',
-        away: 'Leszno',
-        result: '40 : 50',
-        homeLogo: 'grudziadz_128.png',
-        awayLogo: 'leszno_128.png'
+        home: 'Gdańsk',
+        away: 'Zielona Góra',
+        result: '37 : 53',
+        homeLogo: 'gdansk_128.png',
+        awayLogo: 'zielona_gora_128.png'
+      },
+      {
+        id: 3,
+        home: 'Landshut',
+        away: 'Ostrów Wlkp.',
+        result: '38 : 52',
+        homeLogo: 'landshut_128.png',
+        awayLogo: 'ostrow_128.png'
       }
     ]
   },
   {
-    date: '21 kwietnia 2023',
+    date: '22 kwietnia 2023',
     matches: [
       {
-        id: 3,
-        home: 'Częstochowa',
-        away: 'Gorzów Wlkp.',
-        result: '45 : 45',
-        homeLogo: 'czestochowa_128.png',
-        awayLogo: 'gorzow_128.png'
+        id: 4,
+        home: 'Poznań',
+        away: 'Łódź',
+        result: '43 : 47',
+        homeLogo: 'poznan_128.png',
+        awayLogo: 'lodz_128.png'
+      }
+    ]
+  },
+  {
+    date: '16 kwietnia 2023',
+    matches: [
+      {
+        id: 5,
+        home: 'Ostrów Wlkp.',
+        away: 'Rybnik',
+        result: '45:44',
+        homeLogo: 'ostrow_128.png',
+        awayLogo: 'rybnik_128.png'
       }
     ]
   }

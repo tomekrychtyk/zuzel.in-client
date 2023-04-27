@@ -13,13 +13,21 @@ export default function LeagueTwo(props: Props) {
   return (
     <Grid container spacing={4} sx={props.sx}>
       <Grid item md={4} xs={12}>
-        <Matches data={lastMatches} />
+        <Matches
+          title="E-winner 2. liga"
+          subtitle="Ostatnie mecze"
+          data={lastMatches}
+        />
       </Grid>
       <Grid item md={4} xs={12}>
-        <Matches data={nextMatches} />
+        <Matches
+          title="E-winner 2. liga"
+          subtitle="Nadchodzące mecze"
+          data={nextMatches}
+        />
       </Grid>
       <Grid item md={4} xs={12}>
-        <LeagueTable data={table} />
+        <LeagueTable title="E-Winner 2. liga" subtitle="Tabela" data={table} />
       </Grid>
     </Grid>
   );

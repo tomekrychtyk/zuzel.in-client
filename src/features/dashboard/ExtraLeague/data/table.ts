@@ -3,7 +3,7 @@ const table = [
     place: 1,
     name: 'Betard Sparta Wrocław',
     matches: 2,
-    points: 4,
+    points: 6,
     smallPoints: '+28',
     logo: 'wroclaw_128.png'
   },

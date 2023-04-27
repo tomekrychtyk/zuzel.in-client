@@ -25,6 +25,7 @@ interface MatchData {
   homeLogo?: string;
   awayLogo?: string;
   live?: boolean;
+  hour?: string;
 }
 
 interface MatchesData {
@@ -34,9 +35,12 @@ interface MatchesData {
 
 type Props = {
   data: MatchesData[];
+  title: string;
+  subtitle: string;
+  moreLink?: string;
 };
 
-const Matches: FC<Props> = ({ data }) => {
+const Matches: FC<Props> = ({ data, title, subtitle }) => {
   const theme = useTheme();
 
   return (
@@ -63,9 +67,9 @@ const Matches: FC<Props> = ({ data }) => {
               fontSize: `${theme.typography.pxToRem(12)}`
             }}
           >
-            PGE Ekstraliga
+            {title}
           </Typography>
-          <Typography variant="h4">Ostatnie mecze</Typography>
+          <Typography variant="h4">{subtitle}</Typography>
         </Box>
         <Divider />
         <List disablePadding>
@@ -114,7 +118,7 @@ const Matches: FC<Props> = ({ data }) => {
                               width: 42,
                               height: 42
                             }}
-                            alt="Krosno"
+                            alt={match.home}
                             src={`${LOGOS_BUCKET_URL}/${match.homeLogo}`}
                           />
                         </ListItemAvatar>
@@ -142,9 +146,19 @@ const Matches: FC<Props> = ({ data }) => {
                             <Typography
                               color="text.primary"
                               variant="h5"
-                              sx={{ textAlign: 'center', mt: 2 }}
+                              sx={{
+                                textAlign: 'center',
+                                mt: match.live ? 2 : 0
+                              }}
                             >
-                              {match.result}
+                              {match.result ? match.result : null}
+                              {match.hour ? (
+                                <Typography
+                                  sx={{ fontSize: '12px', fontStyle: 'italic' }}
+                                >
+                                  {match.hour}
+                                </Typography>
+                              ) : null}
                             </Typography>
                           }
                         />

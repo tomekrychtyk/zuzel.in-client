@@ -1,57 +1,35 @@
 const lastMatches = [
   {
-    date: '27 kwietnia 2023',
-    matches: [
-      {
-        id: 6,
-        home: 'Lublin',
-        away: 'Wrocław',
-        homeLogo: 'lublin_128.png',
-        awayLogo: 'wroclaw_128.png',
-        result: '8 : 4',
-        live: true
-      },
-      {
-        id: 5,
-        home: 'Krosno',
-        away: 'Toruń',
-        homeLogo: 'krosno_128.png',
-        awayLogo: 'torun_128.png',
-        result: '50 : 40'
-      }
-    ]
-  },
-  {
     date: '23 kwietnia 2023',
     matches: [
       {
         id: 1,
-        home: 'Toruń',
-        away: 'Wrocław',
-        result: '38 : 52',
-        homeLogo: 'torun_128.png',
-        awayLogo: 'wroclaw_128.png'
+        home: 'Piła',
+        away: 'Opole',
+        homeLogo: 'pila_128.png',
+        awayLogo: 'opole_128.png',
+        result: '39 : 51'
       },
       {
         id: 2,
-        home: 'Grudziądz',
-        away: 'Leszno',
-        result: '40 : 50',
-        homeLogo: 'grudziadz_128.png',
-        awayLogo: 'leszno_128.png'
+        home: 'Daugavpils',
+        away: 'Gniezno',
+        homeLogo: 'daugavpils_128.png',
+        awayLogo: 'gniezno_128.png',
+        result: '47 : 43'
       }
     ]
   },
   {
-    date: '21 kwietnia 2023',
+    date: '22 kwietnia 2023',
     matches: [
       {
         id: 3,
-        home: 'Częstochowa',
-        away: 'Gorzów Wlkp.',
-        result: '45 : 45',
-        homeLogo: 'czestochowa_128.png',
-        awayLogo: 'gorzow_128.png'
+        home: 'Rawicz',
+        away: 'Rzeszów',
+        homeLogo: 'rawicz_128.png',
+        awayLogo: 'rzeszow_128.png',
+        result: '46 : 44'
       }
     ]
   }

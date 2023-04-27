@@ -28,6 +28,8 @@ interface TableItem {
 
 type Props = {
   data: TableItem[];
+  title: string;
+  subtitle: string;
 };
 
 const TableWrapper = styled(Table)(
@@ -38,7 +40,7 @@ const TableWrapper = styled(Table)(
   `
 );
 
-const LeagueTable: FC<Props> = ({ data }) => {
+const LeagueTable: FC<Props> = ({ data, title, subtitle }) => {
   const theme = useTheme();
   data.sort((a, b) => {
     return a.place > b.place ? 1 : -1;
@@ -67,9 +69,9 @@ const LeagueTable: FC<Props> = ({ data }) => {
               fontSize: `${theme.typography.pxToRem(12)}`
             }}
           >
-            PGE Ekstraliga
+            {title}
           </Typography>
-          <Typography variant="h4">Tabela</Typography>
+          <Typography variant="h4">{subtitle}</Typography>
         </Box>
         <Divider />
         <TableContainer sx={{ pt: 1 }}>

@@ -8,8 +8,7 @@ const lastMatches = [
         away: 'Wrocław',
         homeLogo: 'lublin_128.png',
         awayLogo: 'wroclaw_128.png',
-        result: '8 : 4',
-        live: true
+        result: '46 : 44'
       },
       {
         id: 5,

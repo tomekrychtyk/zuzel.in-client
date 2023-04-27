@@ -9,13 +9,21 @@ export default function ExtraLeague() {
   return (
     <Grid container spacing={4}>
       <Grid item md={4} xs={12}>
-        <Matches data={lastMatches} />
+        <Matches
+          data={lastMatches}
+          title="PGE Ekstraliga"
+          subtitle="Ostatnie mecze"
+        />
       </Grid>
       <Grid item md={4} xs={12}>
-        <Matches data={nextMatches} />
+        <Matches
+          data={nextMatches}
+          title="PGE Ekstraliga"
+          subtitle="Nadchodzące mecze"
+        />
       </Grid>
       <Grid item md={4} xs={12}>
-        <LeagueTable data={table} />
+        <LeagueTable title="PGE Ekstraliga" subtitle="Tabela" data={table} />
       </Grid>
     </Grid>
   );
