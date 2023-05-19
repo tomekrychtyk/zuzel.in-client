@@ -32,6 +32,10 @@ const menuItems: MenuItems[] = [
           {
             name: 'Tabela',
             link: '/polish-extra-league/standings'
+          },
+          {
+            name: 'Drużyny',
+            link: '/polish-extra-league/teams'
           }
         ]
       }
