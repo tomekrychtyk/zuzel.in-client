@@ -87,6 +87,7 @@ export const getPositionChartConfig = (theme: Theme) => {
     yaxis: {
       reversed: true,
       min: 1,
+      max: 8,
       tickAmount: 3,
       axisBorder: {
         show: false
