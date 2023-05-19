@@ -27,19 +27,23 @@ const menuItems: MenuItems[] = [
         items: [
           {
             name: 'Terminarz',
-            link: '/polish-extra-league/fixtures'
+            link: '/polish-extra-league/fixtures',
           },
           {
             name: 'Tabela',
-            link: '/polish-extra-league/standings'
+            link: '/polish-extra-league/standings',
           },
           {
             name: 'Drużyny',
-            link: '/polish-extra-league/teams'
-          }
-        ]
-      }
-    ]
+            link: '/polish-extra-league/teams',
+          },
+          {
+            name: 'Klasyfikacja medalowa',
+            link: '/polish-extra-league/classification',
+          },
+        ],
+      },
+    ],
   },
   {
     heading: 'Inne rozgrywki w Polsce',
@@ -47,10 +51,19 @@ const menuItems: MenuItems[] = [
       {
         icon: AnalyticsTwoToneIcon,
         name: 'IMP',
-        link: '/imp'
-      }
-    ]
-  }
+        items: [
+          {
+            name: 'Terminarz',
+            link: '/imp/fixtures',
+          },
+          {
+            name: 'Klasyfikacja medalowa',
+            link: '/imp/classification',
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 export default menuItems;

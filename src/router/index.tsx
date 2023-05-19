@@ -10,12 +10,12 @@ const Loader = (Component: FC) => (props: ComponentProps<FC>) =>
     </Suspense>
   );
 
-const Dashboard = Loader(lazy(() => import('./features/dashboard/Dashboard')));
+const Dashboard = Loader(lazy(() => import('@/features/dashboard/Dashboard')));
 const PolishExtraLeagueStandings = Loader(
-  lazy(() => import('./features/polish-extra-league/Standings'))
+  lazy(() => import('@/features/polish-extra-league/Standings'))
 );
 const PolistExtraLeagueFixtures = Loader(
-  lazy(() => import('./features/polish-extra-league/Fixtures'))
+  lazy(() => import('@/features/polish-extra-league/Fixtures'))
 );
 
 const router: RouteObject[] = [
@@ -25,18 +25,18 @@ const router: RouteObject[] = [
     children: [
       {
         path: '/',
-        element: <Dashboard />
+        element: <Dashboard />,
       },
       {
         path: '/polish-extra-league/standings',
-        element: <PolishExtraLeagueStandings />
+        element: <PolishExtraLeagueStandings />,
       },
       {
         path: '/polish-extra-league/fixtures',
-        element: <PolistExtraLeagueFixtures />
-      }
-    ]
-  }
+        element: <PolistExtraLeagueFixtures />,
+      },
+    ],
+  },
 ];
 
 export default router;
