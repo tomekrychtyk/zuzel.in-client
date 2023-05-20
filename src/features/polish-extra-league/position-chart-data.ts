@@ -1,4 +1,6 @@
-export const seriesData = {
+export const seriesData: {
+  [n: string]: number[];
+} = {
   wroclaw: [5, 1, 1, 1, 1],
   lublin: [5, 2, 4, 4, 2],
   czestochowa: [3, 6, 5, 6, 3],

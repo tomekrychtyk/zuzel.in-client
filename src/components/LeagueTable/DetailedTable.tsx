@@ -232,7 +232,7 @@ const LeagueTable: FC<Props> = ({ data, title, subtitle }) => {
                           variant="h5"
                           color={theme.colors.success.main}
                         >
-                          {homeLoses}
+                          {awayWins}
                         </Typography>
                       </TableCell>
                       <TableCell align="center">
@@ -240,7 +240,7 @@ const LeagueTable: FC<Props> = ({ data, title, subtitle }) => {
                           variant="h5"
                           color={theme.colors.primary.main}
                         >
-                          {awayWins}
+                          {homeLoses}
                         </Typography>
                       </TableCell>
                       <TableCell align="center">
