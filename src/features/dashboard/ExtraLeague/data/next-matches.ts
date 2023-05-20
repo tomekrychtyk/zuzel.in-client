@@ -37,7 +37,8 @@ const nextMatches = [
         away: 'Grudziądz',
         homeLogo: 'krosno_128.png',
         awayLogo: 'grudziadz_128.png',
-        hour: '19:15'
+        hour: '19:15',
+        live: true
       }
     ]
   }
