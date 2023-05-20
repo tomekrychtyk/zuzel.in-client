@@ -87,7 +87,9 @@ export default function Standings() {
           ></Grid>
           <Grid item md={12} lg={10}>
             {standingsError || !standingsData ? (
-              <Card>Nie można załadować danych</Card>
+              <Card sx={{ mt: 4 }}>
+                <CardHeader title="Błąd ładowania danych" />
+              </Card>
             ) : (
               <Table
                 data={standingsData}
