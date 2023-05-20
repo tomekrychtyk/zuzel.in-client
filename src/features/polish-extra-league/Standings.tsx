@@ -18,27 +18,53 @@ import Table from '@/components/LeagueTable/DetailedTable';
 import Legend from '@/components/LeagueTable/Legend';
 import { getPositionChartConfig } from '@/components/LeagueTable/position-chart-config';
 import tableData from './standings-data';
+import { seriesData } from './position-chart-data';
 
 const teams = [
   {
-    name: 'Betard Spart Wrocław'
+    id: 'wroclaw',
+    name: 'Betard Sparta Wrocław'
   },
   {
+    id: 'lublin',
+    name: 'Platinum Motor Lublin'
+  },
+  {
+    id: 'czestochowa',
+    name: 'Tauron Włókniarz Częstochowa'
+  },
+  {
+    id: 'leszno',
     name: 'Fogo Unia Leszno'
   },
   {
+    id: 'krosno',
+    name: 'Cellfast Wilki Krosno'
+  },
+  {
+    id: 'torun',
+    name: 'For Nature Solutions KS Apator Toruń'
+  },
+  {
+    id: 'gorzow',
     name: 'Ebut.pl Stal Gorzów'
   },
   {
-    name: 'Cellfast Wilki Krosno'
+    id: 'grudziadz',
+    name: 'ZOOLeszcz GKM Grudziądz'
   }
 ];
+
+const series: {
+  [n: string]: number[];
+} = seriesData;
 
 export default function Standings() {
   const theme = useTheme();
   const teamFormSelectRef = useRef<any>(null);
   const [openTeamSelect, setOpenTeamSelect] = useState<boolean>(false);
   const [currentTeam, setCurrentTeam] = useState('Betard Sparta Wrocław');
+  const [currentSeries, setCurrentSeries] = useState(series['wroclaw']);
 
   const ChartAudienceOptions = getPositionChartConfig(theme);
 
@@ -126,6 +152,7 @@ export default function Standings() {
                       key={team.name}
                       onClick={() => {
                         setCurrentTeam(team.name);
+                        setCurrentSeries(series[team.id]);
                         setOpenTeamSelect(false);
                       }}
                     >
@@ -139,23 +166,7 @@ export default function Standings() {
                     series={[
                       {
                         name: 'Miejsce',
-                        data: [
-                          1,
-                          2,
-                          2,
-                          4,
-                          1,
-                          6,
-                          4,
-                          1,
-                          null,
-                          null,
-                          null,
-                          null,
-                          null,
-                          null,
-                          null
-                        ]
+                        data: currentSeries
                       }
                     ]}
                     type="line"

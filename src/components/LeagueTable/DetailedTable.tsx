@@ -12,7 +12,7 @@ import {
   TableRow,
   TableCell,
   TableBody,
-  TableHead,
+  TableHead
 } from '@mui/material';
 
 const LOGOS_BUCKET_URL = 'https://s3.eu-central-1.amazonaws.com/zuzel.in/logos';
@@ -24,6 +24,14 @@ interface TableItem {
   points: number;
   smallPoints: string;
   logo: string;
+  wins: number;
+  draws: number;
+  loses: number;
+  homeWins: number;
+  homeLoses: number;
+  awayWins: number;
+  awayLoses: number;
+  bonuses: number;
 }
 
 type Props = {
@@ -43,9 +51,9 @@ const TableWrapper = styled(Table)(
 const StyledRow = styled(TableRow)(({ theme }) => {
   return {
     '&:nth-of-type(odd)': {
-      backgroundColor: theme.colors.alpha.trueWhite[10],
+      backgroundColor: theme.colors.alpha.trueWhite[10]
     },
-    '&:nth-of-type(even)': {},
+    '&:nth-of-type(even)': {}
   };
 });
 
@@ -62,7 +70,7 @@ const LeagueTable: FC<Props> = ({ data, title, subtitle }) => {
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
+        justifyContent: 'space-between'
       }}
     >
       <Box>
@@ -77,7 +85,7 @@ const LeagueTable: FC<Props> = ({ data, title, subtitle }) => {
             variant="caption"
             fontWeight="bold"
             sx={{
-              fontSize: `${theme.typography.pxToRem(12)}`,
+              fontSize: `${theme.typography.pxToRem(12)}`
             }}
           >
             {title}
@@ -91,13 +99,19 @@ const LeagueTable: FC<Props> = ({ data, title, subtitle }) => {
               <TableRow>
                 <TableCell sx={{ background: '#252525' }}></TableCell>
                 <TableCell sx={{ background: '#252525' }} align="center">
-                  <Typography color={theme.colors.alpha.trueWhite}>M</Typography>
+                  <Typography color={theme.colors.alpha.trueWhite}>
+                    M
+                  </Typography>
                 </TableCell>
                 <TableCell sx={{ background: '#252525' }} align="center">
-                  <Typography color={theme.colors.alpha.trueWhite}>PKT</Typography>
+                  <Typography color={theme.colors.alpha.trueWhite}>
+                    PKT
+                  </Typography>
                 </TableCell>
                 <TableCell sx={{ background: '#252525' }} align="center">
-                  <Typography color={theme.colors.alpha.trueWhite}>+/-</Typography>
+                  <Typography color={theme.colors.alpha.trueWhite}>
+                    +/-
+                  </Typography>
                 </TableCell>
                 <TableCell sx={{ background: '#252525' }} align="center">
                   <Typography color={theme.colors.success.main}>W</Typography>
@@ -126,84 +140,121 @@ const LeagueTable: FC<Props> = ({ data, title, subtitle }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data.map(({ name, points, logo, matches, smallPoints }) => {
-                return (
-                  <StyledRow hover key={name}>
-                    <TableCell>
-                      <Box display="flex" alignItems="center">
-                        <Avatar
-                          sx={{
-                            color: `${theme.colors.error.main}`,
-                            width: 40,
-                            height: 40,
-                          }}
-                          src={`${LOGOS_BUCKET_URL}/${logo}`}
-                        />
-                        <Box ml={1.5}>
-                          <Typography
-                            color="text.primary"
-                            variant="h5"
-                            noWrap
-                            sx={{ fontSize: '14px' }}
-                          >
-                            {name}
-                          </Typography>
+              {data.map(
+                ({
+                  name,
+                  points,
+                  logo,
+                  matches,
+                  smallPoints,
+                  wins,
+                  draws,
+                  loses,
+                  homeWins,
+                  homeLoses,
+                  awayWins,
+                  awayLoses,
+                  bonuses
+                }) => {
+                  return (
+                    <StyledRow hover key={name}>
+                      <TableCell>
+                        <Box display="flex" alignItems="center">
+                          <Avatar
+                            sx={{
+                              color: `${theme.colors.error.main}`,
+                              width: 40,
+                              height: 40
+                            }}
+                            src={`${LOGOS_BUCKET_URL}/${logo}`}
+                          />
+                          <Box ml={1.5}>
+                            <Typography
+                              color="text.primary"
+                              variant="h5"
+                              noWrap
+                              sx={{ fontSize: '14px' }}
+                            >
+                              {name}
+                            </Typography>
+                          </Box>
                         </Box>
-                      </Box>
-                    </TableCell>
-                    <TableCell align="center">
-                      <Typography variant="h5">{matches}</Typography>
-                    </TableCell>
-                    <TableCell align="center">
-                      <Typography variant="h4">{points}</Typography>
-                    </TableCell>
+                      </TableCell>
+                      <TableCell align="center">
+                        <Typography variant="h5">{matches}</Typography>
+                      </TableCell>
+                      <TableCell align="center">
+                        <Typography variant="h4">{points}</Typography>
+                      </TableCell>
 
-                    <TableCell align="center">
-                      <Typography variant="h5">{smallPoints}</Typography>
-                    </TableCell>
-                    <TableCell align="center">
-                      <Typography variant="h5" color={theme.colors.success.main}>
-                        {3}
-                      </Typography>
-                    </TableCell>
-                    <TableCell align="center">
-                      <Typography variant="h5" color={theme.colors.secondary.main}>
-                        {4}
-                      </Typography>
-                    </TableCell>
-                    <TableCell align="center">
-                      <Typography variant="h5" color={theme.colors.primary.main}>
-                        {3}
-                      </Typography>
-                    </TableCell>
-                    <TableCell align="center">
-                      <Typography variant="h5" color="lightskyblue">
-                        {7}
-                      </Typography>
-                    </TableCell>
-                    <TableCell align="center">
-                      <Typography variant="h5" color={theme.colors.success.main}>
-                        {4}
-                      </Typography>
-                    </TableCell>
-                    <TableCell align="center">
-                      <Typography variant="h5" color={theme.colors.success.main}>
-                        {4}
-                      </Typography>
-                    </TableCell>
-                    <TableCell align="center">
-                      <Typography variant="h5" color={theme.colors.primary.main}>
-                        {4}
-                      </Typography>
-                    </TableCell>
-                    <TableCell align="center">
-                      <Typography variant="h5" color={theme.colors.primary.main}>
-                        {4}
-                      </Typography>
-                    </TableCell>
-                  </StyledRow>
-                );
-              })}
+                      <TableCell align="center">
+                        <Typography variant="h5">{smallPoints}</Typography>
+                      </TableCell>
+                      <TableCell align="center">
+                        <Typography
+                          variant="h5"
+                          color={theme.colors.success.main}
+                        >
+                          {wins}
+                        </Typography>
+                      </TableCell>
+                      <TableCell align="center">
+                        <Typography
+                          variant="h5"
+                          color={theme.colors.secondary.main}
+                        >
+                          {draws}
+                        </Typography>
+                      </TableCell>
+                      <TableCell align="center">
+                        <Typography
+                          variant="h5"
+                          color={theme.colors.primary.main}
+                        >
+                          {loses}
+                        </Typography>
+                      </TableCell>
+                      <TableCell align="center">
+                        <Typography variant="h5" color="lightskyblue">
+                          {bonuses}
+                        </Typography>
+                      </TableCell>
+                      <TableCell align="center">
+                        <Typography
+                          variant="h5"
+                          color={theme.colors.success.main}
+                        >
+                          {homeWins}
+                        </Typography>
+                      </TableCell>
+                      <TableCell align="center">
+                        <Typography
+                          variant="h5"
+                          color={theme.colors.success.main}
+                        >
+                          {homeLoses}
+                        </Typography>
+                      </TableCell>
+                      <TableCell align="center">
+                        <Typography
+                          variant="h5"
+                          color={theme.colors.primary.main}
+                        >
+                          {awayWins}
+                        </Typography>
+                      </TableCell>
+                      <TableCell align="center">
+                        <Typography
+                          variant="h5"
+                          color={theme.colors.primary.main}
+                        >
+                          {awayLoses}
+                        </Typography>
+                      </TableCell>
+                    </StyledRow>
+                  );
+                }
+              )}
             </TableBody>
           </TableWrapper>
         </TableContainer>
