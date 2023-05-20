@@ -94,7 +94,7 @@ export default function Standings() {
           ></Grid>
           <Grid item xs={12} sm={12} md={12} lg={10}>
             <Card sx={{ mt: 4 }}>
-              <CardHeader title="Ogólne statystyki z sezonu" />
+              <CardHeader title="Historia pozycji w tabeli" />
               <Divider />
               <CardContent>
                 <Button
