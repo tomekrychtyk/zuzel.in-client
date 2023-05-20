@@ -14,28 +14,12 @@ import {
   TableBody,
   TableHead
 } from '@mui/material';
+import { IStandingsItem } from '@/features/polish-extra-league/interfaces';
 
 const LOGOS_BUCKET_URL = 'https://s3.eu-central-1.amazonaws.com/zuzel.in/logos';
 
-interface TableItem {
-  place: number;
-  name: string;
-  matches: number;
-  points: number;
-  smallPoints: string;
-  logo: string;
-  wins: number;
-  draws: number;
-  loses: number;
-  homeWins: number;
-  homeLoses: number;
-  awayWins: number;
-  awayLoses: number;
-  bonuses: number;
-}
-
 type Props = {
-  data: TableItem[];
+  data: IStandingsItem[];
   title: string;
   subtitle: string;
 };
@@ -59,8 +43,9 @@ const StyledRow = styled(TableRow)(({ theme }) => {
 
 const LeagueTable: FC<Props> = ({ data, title, subtitle }) => {
   const theme = useTheme();
+  const sortedData = [...data];
 
-  data.sort((a, b) => {
+  sortedData.sort((a, b) => {
     return a.place > b.place ? 1 : -1;
   });
 
@@ -140,7 +125,7 @@ const LeagueTable: FC<Props> = ({ data, title, subtitle }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data.map(
+              {sortedData.map(
                 ({
                   name,
                   points,
