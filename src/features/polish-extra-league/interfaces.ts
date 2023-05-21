@@ -15,8 +15,7 @@ export interface IStandingsItem {
   logo: string;
 }
 
-interface ITeam {
-  id: string;
+export interface ITeam {
   name: string;
 }
 

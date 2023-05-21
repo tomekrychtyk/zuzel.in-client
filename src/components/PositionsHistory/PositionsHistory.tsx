@@ -22,7 +22,6 @@ type Props = {
   currentSeries: number[];
   positionsHistoryData: IPositionsHistory;
   teams: {
-    id: string;
     name: string;
   }[];
   currentTeam: string;
@@ -76,7 +75,7 @@ const PotitionsHistory: FC<Props> = ({
               key={team.name}
               onClick={() => {
                 onTeamSelect(team.name);
-                onCurrentSeriesSelect(positionsHistoryData[team.id]);
+                onCurrentSeriesSelect(positionsHistoryData[team.name]);
                 onOpenTeamSelect(false);
               }}
             >

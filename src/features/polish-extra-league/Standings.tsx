@@ -17,11 +17,11 @@ import TableLegend from '@/components/LeagueTable/Legend';
 import SuspenseLoader from '@/components/SuspenseLoader/SuspenseLoader';
 import PositionsHistory from '@/components/PositionsHistory/PositionsHistory';
 import { getPositionChartConfig } from '@/components/LeagueTable/position-chart-config';
+import { ITeam } from './interfaces';
 import {
   useGetStandingsQuery,
   useGetPositionsHistoryQuery
 } from './polishExtraLeagueApi';
-import { teams } from './teams-data';
 
 const CardActionsWrapper = styled(CardActions)(
   ({ theme }) => `
@@ -35,8 +35,9 @@ export default function Standings() {
   const theme = useTheme();
   const dispatch = useAppDispatch();
   const [openTeamSelect, setOpenTeamSelect] = useState<boolean>(false);
-  const [currentTeam, setCurrentTeam] = useState('Betard Sparta Wrocław');
+  const [currentTeam, setCurrentTeam] = useState('');
   const [currentSeries, setCurrentSeries] = useState<number[]>([]);
+  const [teams, setTeams] = useState<ITeam[]>([]);
 
   const positionsChartsConfig = getPositionChartConfig(theme);
   const {
@@ -52,7 +53,12 @@ export default function Standings() {
 
   useEffect(() => {
     if (positionsHistoryData) {
-      setCurrentSeries(positionsHistoryData['wroclaw']);
+      setCurrentSeries(positionsHistoryData['Tauron Włókniarz Częstochowa']);
+      const teamsData = Object.keys(positionsHistoryData).map((team) => {
+        return { name: team };
+      });
+      setTeams(teamsData);
+      setCurrentTeam(teamsData[0].name);
     }
   }, [positionsHistoryData]);
 
@@ -137,205 +143,6 @@ export default function Standings() {
                   positionsHistoryData={positionsHistoryData}
                 />
                 <Divider />
-
-                <CardActionsWrapper>
-                  <Box>
-                    <Grid container alignItems="center">
-                      <Grid
-                        xs={12}
-                        sm={6}
-                        md={4}
-                        item
-                        sx={{
-                          position: 'relative'
-                        }}
-                      >
-                        <Box
-                          component="span"
-                          sx={{
-                            display: { xs: 'none', sm: 'inline-block' }
-                          }}
-                        >
-                          <Divider orientation="vertical" flexItem absolute />
-                        </Box>
-                        <Box
-                          sx={{
-                            p: 3
-                          }}
-                        >
-                          <Box>
-                            <Typography variant="subtitle2" gutterBottom>
-                              heading 1
-                            </Typography>
-                            <Typography variant="h3">heading 2</Typography>
-                          </Box>
-                          wykres
-                        </Box>
-                        <Divider />
-                      </Grid>
-                      <Grid
-                        xs={12}
-                        sm={6}
-                        md={4}
-                        item
-                        sx={{
-                          position: 'relative'
-                        }}
-                      >
-                        <Box
-                          component="span"
-                          sx={{
-                            display: { xs: 'none', sm: 'inline-block' }
-                          }}
-                        >
-                          <Divider orientation="vertical" flexItem absolute />
-                        </Box>
-                        <Box
-                          sx={{
-                            p: 3
-                          }}
-                        >
-                          <Box>
-                            <Typography variant="subtitle2" gutterBottom>
-                              h1
-                            </Typography>
-                            <Typography variant="h3">h2</Typography>
-                          </Box>
-                          wykres
-                        </Box>
-                        <Divider />
-                      </Grid>
-                      <Grid
-                        xs={12}
-                        sm={6}
-                        md={4}
-                        item
-                        sx={{
-                          position: 'relative'
-                        }}
-                      >
-                        <Box
-                          component="span"
-                          sx={{
-                            display: { xs: 'none', sm: 'inline-block' }
-                          }}
-                        >
-                          <Divider orientation="vertical" flexItem absolute />
-                        </Box>
-                        <Box
-                          sx={{
-                            p: 3
-                          }}
-                        >
-                          <Box>
-                            <Typography variant="subtitle2" gutterBottom>
-                              h1
-                            </Typography>
-                            <Typography variant="h3">h2</Typography>
-                          </Box>
-                          chart
-                        </Box>
-                        <Divider />
-                      </Grid>
-                      <Grid
-                        xs={12}
-                        sm={6}
-                        md={4}
-                        item
-                        sx={{
-                          position: 'relative'
-                        }}
-                      >
-                        <Box
-                          component="span"
-                          sx={{
-                            display: { xs: 'none', sm: 'inline-block' }
-                          }}
-                        >
-                          <Divider orientation="vertical" flexItem absolute />
-                        </Box>
-                        <Box
-                          sx={{
-                            p: 3
-                          }}
-                        >
-                          <Box>
-                            <Typography variant="subtitle2" gutterBottom>
-                              h1
-                            </Typography>
-                            <Typography variant="h3">h2</Typography>
-                          </Box>
-                          wykres
-                        </Box>
-                        <Divider />
-                      </Grid>
-                      <Grid
-                        xs={12}
-                        sm={6}
-                        md={4}
-                        item
-                        sx={{
-                          position: 'relative'
-                        }}
-                      >
-                        <Box
-                          component="span"
-                          sx={{
-                            display: { xs: 'none', sm: 'inline-block' }
-                          }}
-                        >
-                          <Divider orientation="vertical" flexItem absolute />
-                        </Box>
-                        <Box
-                          sx={{
-                            p: 3
-                          }}
-                        >
-                          <Box>
-                            <Typography variant="subtitle2" gutterBottom>
-                              h1
-                            </Typography>
-                            <Typography variant="h3">h2</Typography>
-                          </Box>
-                          wykres
-                        </Box>
-                        <Divider />
-                      </Grid>
-                      <Grid
-                        xs={12}
-                        sm={6}
-                        md={4}
-                        item
-                        sx={{
-                          position: 'relative'
-                        }}
-                      >
-                        <Box
-                          component="span"
-                          sx={{
-                            display: { xs: 'none', sm: 'inline-block' }
-                          }}
-                        >
-                          <Divider orientation="vertical" flexItem absolute />
-                        </Box>
-                        <Box
-                          sx={{
-                            p: 3
-                          }}
-                        >
-                          <Box>
-                            <Typography variant="subtitle2" gutterBottom>
-                              sesje
-                            </Typography>
-                            <Typography variant="h3">sesje 2</Typography>
-                          </Box>
-                          wykres
-                        </Box>
-                        <Divider />
-                      </Grid>
-                    </Grid>
-                  </Box>
-                </CardActionsWrapper>
               </Card>
             )}
           </Grid>
