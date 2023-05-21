@@ -15,6 +15,11 @@ export interface IStandingsItem {
   logo: string;
 }
 
+interface ITeam {
+  id: string;
+  name: string;
+}
+
 export interface IPositionsHistory {
   [k: string]: number[];
 }
@@ -22,4 +27,5 @@ export interface IPositionsHistory {
 export interface IPolishExtraLeagueState {
   standings: IStandingsItem[];
   positionsHistory: IPositionsHistory;
+  teams: ITeam[];
 }

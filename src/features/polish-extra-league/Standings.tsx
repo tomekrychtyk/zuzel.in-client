@@ -1,21 +1,15 @@
 import { useRef, useState, useEffect } from 'react';
 import {
   Box,
-  Button,
   Card,
-  CardContent,
   CardHeader,
   CardActions,
   Divider,
   Grid,
-  Menu,
-  MenuItem,
   Typography,
   useTheme,
   styled
 } from '@mui/material';
-import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone';
-import Chart from 'react-apexcharts';
 
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import Table from '@/components/LeagueTable/DetailedTable';
@@ -28,7 +22,6 @@ import {
   useGetPositionsHistoryQuery
 } from './polishExtraLeagueApi';
 import { teams } from './teams-data';
-import PotitionsHistory from '@/components/PositionsHistory/PositionsHistory';
 
 const CardActionsWrapper = styled(CardActions)(
   ({ theme }) => `
@@ -41,7 +34,6 @@ const CardActionsWrapper = styled(CardActions)(
 export default function Standings() {
   const theme = useTheme();
   const dispatch = useAppDispatch();
-  const teamFormSelectRef = useRef<any>(null);
   const [openTeamSelect, setOpenTeamSelect] = useState<boolean>(false);
   const [currentTeam, setCurrentTeam] = useState('Betard Sparta Wrocław');
   const [currentSeries, setCurrentSeries] = useState<number[]>([]);
@@ -132,7 +124,7 @@ export default function Standings() {
               </Card>
             ) : (
               <Card sx={{ mt: 4 }}>
-                <PotitionsHistory
+                <PositionsHistory
                   currentTeam={currentTeam}
                   currentSeries={currentSeries}
                   onTeamSelect={setCurrentTeam}

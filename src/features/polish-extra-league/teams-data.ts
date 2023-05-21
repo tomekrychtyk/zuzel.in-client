@@ -1,7 +1,7 @@
 // temp
 export const teams = [
   {
-    id: 'wroclaw',
+    id: 1,
     name: 'Betard Sparta Wrocław'
   },
   {

@@ -4,7 +4,8 @@ import { IPolishExtraLeagueState } from './interfaces';
 
 const initialState: IPolishExtraLeagueState = {
   standings: [],
-  positionsHistory: {}
+  positionsHistory: {},
+  teams: []
 };
 
 const polishExtraLeagueSlice = createSlice({
