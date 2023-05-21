@@ -21,12 +21,14 @@ import { useAppDispatch } from '@/hooks/useAppDispatch';
 import Table from '@/components/LeagueTable/DetailedTable';
 import TableLegend from '@/components/LeagueTable/Legend';
 import SuspenseLoader from '@/components/SuspenseLoader/SuspenseLoader';
+import PositionsHistory from '@/components/PositionsHistory/PositionsHistory';
 import { getPositionChartConfig } from '@/components/LeagueTable/position-chart-config';
 import {
   useGetStandingsQuery,
   useGetPositionsHistoryQuery
 } from './polishExtraLeagueApi';
 import { teams } from './teams-data';
+import PotitionsHistory from '@/components/PositionsHistory/PositionsHistory';
 
 const CardActionsWrapper = styled(CardActions)(
   ({ theme }) => `
@@ -130,59 +132,18 @@ export default function Standings() {
               </Card>
             ) : (
               <Card sx={{ mt: 4 }}>
-                <CardHeader title="Historia pozycji w tabeli" />
-                <Divider />
-                <CardContent>
-                  <Button
-                    size="small"
-                    variant="outlined"
-                    ref={teamFormSelectRef}
-                    onClick={() => setOpenTeamSelect(true)}
-                    endIcon={<ExpandMoreTwoToneIcon fontSize="small" />}
-                  >
-                    {currentTeam}
-                  </Button>
-                  <Menu
-                    disableScrollLock
-                    anchorEl={teamFormSelectRef.current}
-                    onClose={() => setOpenTeamSelect(false)}
-                    open={openTeamSelect}
-                    anchorOrigin={{
-                      vertical: 'bottom',
-                      horizontal: 'left'
-                    }}
-                    transformOrigin={{
-                      vertical: 'top',
-                      horizontal: 'left'
-                    }}
-                  >
-                    {teams.map((team) => (
-                      <MenuItem
-                        key={team.name}
-                        onClick={() => {
-                          setCurrentTeam(team.name);
-                          setCurrentSeries(positionsHistoryData[team.id]);
-                          setOpenTeamSelect(false);
-                        }}
-                      >
-                        {team.name}
-                      </MenuItem>
-                    ))}
-                  </Menu>
-                  <Box sx={{ mt: 2 }}>
-                    <Chart
-                      options={positionsChartsConfig}
-                      series={[
-                        {
-                          name: 'Miejsce',
-                          data: currentSeries
-                        }
-                      ]}
-                      type="line"
-                      height={230}
-                    />
-                  </Box>
-                </CardContent>
+                <PotitionsHistory
+                  currentTeam={currentTeam}
+                  currentSeries={currentSeries}
+                  onTeamSelect={setCurrentTeam}
+                  onCurrentSeriesSelect={setCurrentSeries}
+                  onMenuItemSelect={setOpenTeamSelect}
+                  onOpenTeamSelect={setOpenTeamSelect}
+                  positionsChartsConfig={positionsChartsConfig}
+                  teams={teams}
+                  openTeamSelect={openTeamSelect}
+                  positionsHistoryData={positionsHistoryData}
+                />
                 <Divider />
 
                 <CardActionsWrapper>
