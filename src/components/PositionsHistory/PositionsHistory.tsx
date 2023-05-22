@@ -11,7 +11,7 @@ import {
 import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
-import { IPositionsHistory } from '@/features/polish-extra-league/interfaces';
+import { IPositionsHistory } from '@/interfaces';
 
 type Props = {
   onMenuItemSelect: React.Dispatch<React.SetStateAction<boolean>>;

@@ -27,23 +27,33 @@ const menuItems: MenuItems[] = [
         items: [
           {
             name: 'Terminarz',
-            link: '/polish-extra-league/fixtures',
+            link: '/polish-extra-league/fixtures'
           },
           {
             name: 'Tabela',
-            link: '/polish-extra-league/standings',
+            link: '/polish-extra-league/standings'
           },
           {
             name: 'Drużyny',
-            link: '/polish-extra-league/teams',
+            link: '/polish-extra-league/teams'
           },
           {
             name: 'Klasyfikacja medalowa',
-            link: '/polish-extra-league/classification',
-          },
-        ],
+            link: '/polish-extra-league/classification'
+          }
+        ]
       },
-    ],
+      {
+        name: 'eWinner 1. Liga',
+        icon: AnalyticsTwoToneIcon,
+        items: [
+          {
+            name: 'Tabela',
+            link: '/polish-first-league/standings'
+          }
+        ]
+      }
+    ]
   },
   {
     heading: 'Inne rozgrywki w Polsce',
@@ -54,16 +64,16 @@ const menuItems: MenuItems[] = [
         items: [
           {
             name: 'Terminarz',
-            link: '/imp/fixtures',
+            link: '/imp/fixtures'
           },
           {
             name: 'Klasyfikacja medalowa',
-            link: '/imp/classification',
-          },
-        ],
-      },
-    ],
-  },
+            link: '/imp/classification'
+          }
+        ]
+      }
+    ]
+  }
 ];
 
 export default menuItems;

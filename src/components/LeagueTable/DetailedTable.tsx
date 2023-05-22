@@ -14,7 +14,7 @@ import {
   TableBody,
   TableHead
 } from '@mui/material';
-import { IStandingsItem } from '@/features/polish-extra-league/interfaces';
+import { IStandingsItem } from '@/interfaces';
 
 const LOGOS_BUCKET_URL = 'https://s3.eu-central-1.amazonaws.com/zuzel.in/logos';
 

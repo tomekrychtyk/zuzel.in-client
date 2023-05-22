@@ -1,5 +1,5 @@
 import { apiSlice } from '@/app/api';
-import { IStandingsItem, IPositionsHistory, ITeam } from './interfaces';
+import { IStandingsItem, IPositionsHistory, ITeam } from '@/interfaces';
 
 export const polishExtraLeagueApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

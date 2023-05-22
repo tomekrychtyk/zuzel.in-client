@@ -9,9 +9,9 @@ import PositionsHistory from '@/components/PositionsHistory/PositionsHistory';
 import { getPositionChartConfig } from '@/components/LeagueTable/position-chart-config';
 import { ITeam } from '@/interfaces';
 import {
-  useGetStandingsQuery,
-  useGetPositionsHistoryQuery
-} from './polishExtraLeagueApi';
+  useGetFirstLeagueStandingsQuery,
+  useGetFirstLeaguePositionsHistoryQuery
+} from './polishFirstLeagueApi';
 
 export default function Standings() {
   const theme = useTheme();
@@ -26,16 +26,16 @@ export default function Standings() {
     data: standingsData,
     isLoading: standingsLoading,
     isError: standingsError
-  } = useGetStandingsQuery();
+  } = useGetFirstLeagueStandingsQuery();
   const {
     data: positionsHistoryData,
     isLoading: positionsHistoryLoading,
     isError: positionsHistoryError
-  } = useGetPositionsHistoryQuery();
+  } = useGetFirstLeaguePositionsHistoryQuery();
 
   useEffect(() => {
     if (positionsHistoryData) {
-      setCurrentSeries(positionsHistoryData['Tauron Włókniarz Częstochowa']);
+      setCurrentSeries(positionsHistoryData['Abramczyk Polonia Bydgoszcz']);
       const teamsData = Object.keys(positionsHistoryData).map((team) => {
         return { name: team };
       });
@@ -47,6 +47,8 @@ export default function Standings() {
   if (standingsLoading || positionsHistoryLoading) {
     return <SuspenseLoader />;
   }
+
+  console.log(standingsData);
 
   return (
     <Grid

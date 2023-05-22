@@ -1,10 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import polishExtraLeagueSlice from '@/features/polish-extra-league/polishExtraLeagueSlice';
+import polishFirstLeagueSlice from '@/features/polish-first-league/polishFirstLeagueSlice';
+
 import { apiSlice } from './api';
 
 export const store = configureStore({
   reducer: {
     polishExtraLeague: polishExtraLeagueSlice,
+    polishFirstLeague: polishFirstLeagueSlice,
     [apiSlice.reducerPath]: apiSlice.reducer
   },
   middleware: (getDefaultMiddleware) =>

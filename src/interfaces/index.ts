@@ -23,7 +23,7 @@ export interface IPositionsHistory {
   [k: string]: number[];
 }
 
-export interface IPolishExtraLeagueState {
+export interface IPolishLeagueState {
   standings: IStandingsItem[];
   positionsHistory: IPositionsHistory;
   teams: ITeam[];

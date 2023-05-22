@@ -8,10 +8,10 @@ const initialState: IPolishLeagueState = {
   teams: []
 };
 
-const polishExtraLeagueSlice = createSlice({
-  name: 'polishExtraLeague',
+const polishFirstLeagueSlice = createSlice({
+  name: 'polishFirstLeague',
   initialState,
   reducers: {}
 });
 
-export default polishExtraLeagueSlice.reducer;
+export default polishFirstLeagueSlice.reducer;
