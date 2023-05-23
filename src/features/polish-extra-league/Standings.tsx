@@ -75,7 +75,7 @@ export default function Standings() {
             ) : (
               <Table
                 data={standingsData}
-                title="ostatnia aktualizacja: 19.05.2023"
+                title="ostatnia aktualizacja: 23.05.2023"
                 subtitle="PGE Ekstraliga"
               />
             )}
