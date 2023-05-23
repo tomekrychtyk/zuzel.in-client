@@ -5,7 +5,7 @@ on:
       - main
 defaults:
   run:
-    working-directory: /
+    working-directory: ./
 jobs:
   build:
     runs-on: ubuntu-latest
