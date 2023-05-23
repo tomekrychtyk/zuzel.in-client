@@ -10,7 +10,7 @@ function App() {
   // let initialized = false;
 
   // if (teams) {
-  //   initialized = true;
+  //   initialized = true;;
   // }
 
   const content = useRoutes(router);
