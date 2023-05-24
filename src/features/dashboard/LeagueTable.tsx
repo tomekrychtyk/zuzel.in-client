@@ -12,7 +12,8 @@ import {
   TableRow,
   TableCell,
   TableBody,
-  Button
+  Button,
+  Link
 } from '@mui/material';
 
 const LOGOS_BUCKET_URL = 'https://s3.eu-central-1.amazonaws.com/zuzel.in/logos';
@@ -113,7 +114,9 @@ const LeagueTable: FC<Props> = ({ data, title, subtitle }) => {
         </TableContainer>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center', my: 2 }}>
-        <Button variant="outlined">Szczegółowa tabela</Button>
+        <Link underline="none" href="/polish-extra-league/standings">
+          <Button variant="outlined">Szczegółowa tabela</Button>
+        </Link>
       </Box>
     </Card>
   );
