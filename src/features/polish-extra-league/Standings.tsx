@@ -16,12 +16,6 @@ import { standingsReducer } from './standings-reducer';
 
 export default function Standings() {
   const theme = useTheme();
-  // const dispatch = useAppDispatch();
-  const [openTeamSelect, setOpenTeamSelect] = useState<boolean>(false);
-  const [currentTeam, setCurrentTeam] = useState('');
-  const [currentSeries, setCurrentSeries] = useState<number[]>([]);
-  const [teams, setTeams] = useState<ITeam[]>([]);
-
   const [state, dispatch] = useReducer(standingsReducer, {
     openTeamSelect: false,
     currentTeam: '',
@@ -43,12 +37,17 @@ export default function Standings() {
 
   useEffect(() => {
     if (positionsHistoryData) {
-      setCurrentSeries(positionsHistoryData['Tauron Włókniarz Częstochowa']);
       const teamsData = Object.keys(positionsHistoryData).map((team) => {
         return { name: team };
       });
-      setTeams(teamsData);
-      setCurrentTeam(teamsData[0].name);
+      dispatch({
+        type: 'setInitialChartData',
+        payload: {
+          currentSeries: positionsHistoryData['Tauron Włókniarz Częstochowa'],
+          teamName: teamsData[0].name,
+          teams: teamsData
+        }
+      });
     }
   }, [positionsHistoryData]);
 
@@ -121,15 +120,7 @@ export default function Standings() {
             ) : (
               <Card sx={{ mt: 4 }}>
                 <PositionsHistory
-                  currentTeam={currentTeam}
-                  currentSeries={currentSeries}
-                  onTeamSelect={setCurrentTeam}
-                  onCurrentSeriesSelect={setCurrentSeries}
-                  onMenuItemSelect={setOpenTeamSelect}
-                  onOpenTeamSelect={setOpenTeamSelect}
                   positionsChartsConfig={positionsChartsConfig}
-                  teams={teams}
-                  openTeamSelect={openTeamSelect}
                   positionsHistoryData={positionsHistoryData}
                   onStateChange={dispatch}
                   state={state}

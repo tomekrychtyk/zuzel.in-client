@@ -14,22 +14,14 @@ import { ApexOptions } from 'apexcharts';
 import { IPositionsHistory, ITeam } from '@/interfaces';
 
 type Props = {
-  onMenuItemSelect: React.Dispatch<React.SetStateAction<boolean>>;
-  onOpenTeamSelect: React.Dispatch<React.SetStateAction<boolean>>;
-  onCurrentSeriesSelect: React.Dispatch<React.SetStateAction<number[]>>;
-  onTeamSelect: React.Dispatch<React.SetStateAction<string>>;
   positionsChartsConfig: ApexOptions;
-  currentSeries: number[];
   positionsHistoryData: IPositionsHistory;
-  teams: {
-    name: string;
-  }[];
-  currentTeam: string;
-  openTeamSelect: boolean;
   onStateChange: React.Dispatch<{
     type: string;
     payload: {
       teamOpen?: boolean;
+      teamName?: string;
+      currentSeries?: number[];
     };
   }>;
   state: {
@@ -41,16 +33,8 @@ type Props = {
 };
 
 const PotitionsHistory: FC<Props> = ({
-  onMenuItemSelect,
-  onOpenTeamSelect,
-  onCurrentSeriesSelect,
-  onTeamSelect,
   positionsChartsConfig,
-  currentSeries,
   positionsHistoryData,
-  teams,
-  currentTeam,
-  openTeamSelect,
   onStateChange,
   state
 }) => {
@@ -65,7 +49,6 @@ const PotitionsHistory: FC<Props> = ({
           size="small"
           variant="outlined"
           ref={teamFormSelectRef}
-          // onClick={() => onMenuItemSelect(true)}
           onClick={() =>
             onStateChange({
               type: 'setOpenTeamSelect',
@@ -76,12 +59,19 @@ const PotitionsHistory: FC<Props> = ({
           }
           endIcon={<ExpandMoreTwoToneIcon fontSize="small" />}
         >
-          {currentTeam}
+          {state.currentTeam}
         </Button>
         <Menu
           disableScrollLock
           anchorEl={teamFormSelectRef.current}
-          onClose={() => onMenuItemSelect(false)}
+          onClose={() => {
+            onStateChange({
+              type: 'setOpenTeamSelect',
+              payload: {
+                teamOpen: false
+              }
+            });
+          }}
           open={state.openTeamSelect}
           anchorOrigin={{
             vertical: 'bottom',
@@ -92,17 +82,15 @@ const PotitionsHistory: FC<Props> = ({
             horizontal: 'left'
           }}
         >
-          {teams.map((team) => (
+          {state.teams.map((team) => (
             <MenuItem
               key={team.name}
               onClick={() => {
-                onTeamSelect(team.name);
-                onCurrentSeriesSelect(positionsHistoryData[team.name]);
-                // onOpenTeamSelect(false);
                 onStateChange({
-                  type: 'setOpenTeamSelect',
+                  type: 'teamSelect',
                   payload: {
-                    teamOpen: false
+                    teamName: team.name,
+                    currentSeries: positionsHistoryData[team.name]
                   }
                 });
               }}
@@ -117,7 +105,7 @@ const PotitionsHistory: FC<Props> = ({
             series={[
               {
                 name: 'Miejsce',
-                data: currentSeries
+                data: state.currentTeamsSeries
               }
             ]}
             type="line"
