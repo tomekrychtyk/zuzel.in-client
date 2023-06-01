@@ -1,4 +1,4 @@
-import { useRef, FC } from 'react';
+import React, { useRef, FC } from 'react';
 import {
   CardHeader,
   Divider,
@@ -11,7 +11,7 @@ import {
 import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
-import { IPositionsHistory } from '@/interfaces';
+import { IPositionsHistory, ITeam } from '@/interfaces';
 
 type Props = {
   onMenuItemSelect: React.Dispatch<React.SetStateAction<boolean>>;
@@ -26,6 +26,18 @@ type Props = {
   }[];
   currentTeam: string;
   openTeamSelect: boolean;
+  onStateChange: React.Dispatch<{
+    type: string;
+    payload: {
+      teamOpen?: boolean;
+    };
+  }>;
+  state: {
+    openTeamSelect: boolean;
+    currentTeam: string;
+    currentTeamsSeries: number[];
+    teams: ITeam[];
+  };
 };
 
 const PotitionsHistory: FC<Props> = ({
@@ -38,7 +50,9 @@ const PotitionsHistory: FC<Props> = ({
   positionsHistoryData,
   teams,
   currentTeam,
-  openTeamSelect
+  openTeamSelect,
+  onStateChange,
+  state
 }) => {
   const teamFormSelectRef = useRef<any>(null);
 
@@ -51,7 +65,15 @@ const PotitionsHistory: FC<Props> = ({
           size="small"
           variant="outlined"
           ref={teamFormSelectRef}
-          onClick={() => onMenuItemSelect(true)}
+          // onClick={() => onMenuItemSelect(true)}
+          onClick={() =>
+            onStateChange({
+              type: 'setOpenTeamSelect',
+              payload: {
+                teamOpen: true
+              }
+            })
+          }
           endIcon={<ExpandMoreTwoToneIcon fontSize="small" />}
         >
           {currentTeam}
@@ -60,7 +82,7 @@ const PotitionsHistory: FC<Props> = ({
           disableScrollLock
           anchorEl={teamFormSelectRef.current}
           onClose={() => onMenuItemSelect(false)}
-          open={openTeamSelect}
+          open={state.openTeamSelect}
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'left'
@@ -76,7 +98,13 @@ const PotitionsHistory: FC<Props> = ({
               onClick={() => {
                 onTeamSelect(team.name);
                 onCurrentSeriesSelect(positionsHistoryData[team.name]);
-                onOpenTeamSelect(false);
+                // onOpenTeamSelect(false);
+                onStateChange({
+                  type: 'setOpenTeamSelect',
+                  payload: {
+                    teamOpen: false
+                  }
+                });
               }}
             >
               {team.name}

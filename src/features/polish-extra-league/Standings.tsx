@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useReducer } from 'react';
 import { Card, CardHeader, Divider, Grid, useTheme } from '@mui/material';
 
 import { useAppDispatch } from '@/hooks/useAppDispatch';
@@ -12,14 +12,22 @@ import {
   useGetStandingsQuery,
   useGetPositionsHistoryQuery
 } from './polishExtraLeagueApi';
+import { standingsReducer } from './standings-reducer';
 
 export default function Standings() {
   const theme = useTheme();
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   const [openTeamSelect, setOpenTeamSelect] = useState<boolean>(false);
   const [currentTeam, setCurrentTeam] = useState('');
   const [currentSeries, setCurrentSeries] = useState<number[]>([]);
   const [teams, setTeams] = useState<ITeam[]>([]);
+
+  const [state, dispatch] = useReducer(standingsReducer, {
+    openTeamSelect: false,
+    currentTeam: '',
+    currentTeamsSeries: [],
+    teams: []
+  });
 
   const positionsChartsConfig = getPositionChartConfig(theme);
   const {
@@ -123,6 +131,8 @@ export default function Standings() {
                   teams={teams}
                   openTeamSelect={openTeamSelect}
                   positionsHistoryData={positionsHistoryData}
+                  onStateChange={dispatch}
+                  state={state}
                 />
                 <Divider />
               </Card>
