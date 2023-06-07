@@ -15,7 +15,6 @@ export default function Standings() {
   const theme = useTheme();
   const positionsChartsConfig = getPositionChartConfig(theme);
   const [openTeamSelect, setOpenTeamSelect] = useState<boolean>(false);
-
   const {
     data: standingsData,
     isLoading: standingsLoading,
@@ -26,7 +25,6 @@ export default function Standings() {
     isLoading: positionsHistoryLoading,
     isError: positionsHistoryError
   } = useGetFirstLeaguePositionsHistoryQuery();
-
   const {
     teams,
     currentTeam,
