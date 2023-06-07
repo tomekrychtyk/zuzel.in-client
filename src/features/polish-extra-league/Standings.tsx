@@ -1,29 +1,21 @@
-import { useState, useEffect, useReducer } from 'react';
+import { useState } from 'react';
 import { Card, CardHeader, Divider, Grid, useTheme } from '@mui/material';
-
-import { useAppDispatch } from '@/hooks/useAppDispatch';
 import Table from '@/components/LeagueTable/DetailedTable';
 import TableLegend from '@/components/LeagueTable/Legend';
 import SuspenseLoader from '@/components/SuspenseLoader/SuspenseLoader';
 import PositionsHistory from '@/components/PositionsHistory/PositionsHistory';
 import { getPositionChartConfig } from '@/components/LeagueTable/position-chart-config';
-import { ITeam } from '@/interfaces';
+import useStandings from '@/hooks/useStandings';
 import {
   useGetStandingsQuery,
   useGetPositionsHistoryQuery
 } from './polishExtraLeagueApi';
-import { standingsReducer } from './standings-reducer';
 
 export default function Standings() {
   const theme = useTheme();
-  const [state, dispatch] = useReducer(standingsReducer, {
-    openTeamSelect: false,
-    currentTeam: '',
-    currentTeamsSeries: [],
-    teams: []
-  });
-
   const positionsChartsConfig = getPositionChartConfig(theme);
+  const [openTeamSelect, setOpenTeamSelect] = useState<boolean>(false);
+
   const {
     data: standingsData,
     isLoading: standingsLoading,
@@ -35,21 +27,13 @@ export default function Standings() {
     isError: positionsHistoryError
   } = useGetPositionsHistoryQuery();
 
-  useEffect(() => {
-    if (positionsHistoryData) {
-      const teamsData = Object.keys(positionsHistoryData).map((team) => {
-        return { name: team };
-      });
-      dispatch({
-        type: 'setInitialChartData',
-        payload: {
-          currentSeries: positionsHistoryData['Tauron Włókniarz Częstochowa'],
-          teamName: teamsData[0].name,
-          teams: teamsData
-        }
-      });
-    }
-  }, [positionsHistoryData]);
+  const {
+    teams,
+    currentTeam,
+    setCurrentTeam,
+    currentSeries,
+    setCurrentSeries
+  } = useStandings(positionsHistoryData, standingsData);
 
   if (standingsLoading || positionsHistoryLoading) {
     return <SuspenseLoader />;
@@ -83,7 +67,7 @@ export default function Standings() {
               <Table
                 data={standingsData}
                 title="ostatnia aktualizacja: 23.05.2023"
-                subtitle="PGE Ekstraliga"
+                subtitle="eWinner 1. Liga"
               />
             )}
           </Grid>
@@ -120,10 +104,16 @@ export default function Standings() {
             ) : (
               <Card sx={{ mt: 4 }}>
                 <PositionsHistory
+                  currentTeam={currentTeam}
+                  currentSeries={currentSeries}
+                  onTeamSelect={setCurrentTeam}
+                  onCurrentSeriesSelect={setCurrentSeries}
+                  onMenuItemSelect={setOpenTeamSelect}
+                  onOpenTeamSelect={setOpenTeamSelect}
                   positionsChartsConfig={positionsChartsConfig}
+                  teams={teams}
+                  openTeamSelect={openTeamSelect}
                   positionsHistoryData={positionsHistoryData}
-                  onStateChange={dispatch}
-                  state={state}
                 />
                 <Divider />
               </Card>

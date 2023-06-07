@@ -1,4 +1,4 @@
-import React, { useRef, FC } from 'react';
+import { useRef, FC } from 'react';
 import {
   CardHeader,
   Divider,
@@ -11,32 +11,34 @@ import {
 import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
-import { IPositionsHistory, ITeam } from '@/interfaces';
+import { IPositionsHistory } from '@/interfaces';
 
 type Props = {
+  onMenuItemSelect: React.Dispatch<React.SetStateAction<boolean>>;
+  onOpenTeamSelect: React.Dispatch<React.SetStateAction<boolean>>;
+  onCurrentSeriesSelect: React.Dispatch<React.SetStateAction<number[]>>;
+  onTeamSelect: React.Dispatch<React.SetStateAction<string>>;
   positionsChartsConfig: ApexOptions;
+  currentSeries: number[];
   positionsHistoryData: IPositionsHistory;
-  onStateChange: React.Dispatch<{
-    type: string;
-    payload: {
-      teamOpen?: boolean;
-      teamName?: string;
-      currentSeries?: number[];
-    };
-  }>;
-  state: {
-    openTeamSelect: boolean;
-    currentTeam: string;
-    currentTeamsSeries: number[];
-    teams: ITeam[];
-  };
+  teams: {
+    name: string;
+  }[];
+  currentTeam: string;
+  openTeamSelect: boolean;
 };
 
 const PotitionsHistory: FC<Props> = ({
+  onMenuItemSelect,
+  onOpenTeamSelect,
+  onCurrentSeriesSelect,
+  onTeamSelect,
   positionsChartsConfig,
+  currentSeries,
   positionsHistoryData,
-  onStateChange,
-  state
+  teams,
+  currentTeam,
+  openTeamSelect
 }) => {
   const teamFormSelectRef = useRef<any>(null);
 
@@ -49,30 +51,16 @@ const PotitionsHistory: FC<Props> = ({
           size="small"
           variant="outlined"
           ref={teamFormSelectRef}
-          onClick={() =>
-            onStateChange({
-              type: 'setOpenTeamSelect',
-              payload: {
-                teamOpen: true
-              }
-            })
-          }
+          onClick={() => onMenuItemSelect(true)}
           endIcon={<ExpandMoreTwoToneIcon fontSize="small" />}
         >
-          {state.currentTeam}
+          {currentTeam}
         </Button>
         <Menu
           disableScrollLock
           anchorEl={teamFormSelectRef.current}
-          onClose={() => {
-            onStateChange({
-              type: 'setOpenTeamSelect',
-              payload: {
-                teamOpen: false
-              }
-            });
-          }}
-          open={state.openTeamSelect}
+          onClose={() => onMenuItemSelect(false)}
+          open={openTeamSelect}
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'left'
@@ -82,17 +70,13 @@ const PotitionsHistory: FC<Props> = ({
             horizontal: 'left'
           }}
         >
-          {state.teams.map((team) => (
+          {teams.map((team) => (
             <MenuItem
               key={team.name}
               onClick={() => {
-                onStateChange({
-                  type: 'teamSelect',
-                  payload: {
-                    teamName: team.name,
-                    currentSeries: positionsHistoryData[team.name]
-                  }
-                });
+                onTeamSelect(team.name);
+                onCurrentSeriesSelect(positionsHistoryData[team.name]);
+                onOpenTeamSelect(false);
               }}
             >
               {team.name}
@@ -105,7 +89,7 @@ const PotitionsHistory: FC<Props> = ({
             series={[
               {
                 name: 'Miejsce',
-                data: state.currentTeamsSeries
+                data: currentSeries
               }
             ]}
             type="line"

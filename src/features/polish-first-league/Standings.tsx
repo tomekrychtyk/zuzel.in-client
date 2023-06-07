@@ -1,13 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Card, CardHeader, Divider, Grid, useTheme } from '@mui/material';
-
-import { useAppDispatch } from '@/hooks/useAppDispatch';
 import Table from '@/components/LeagueTable/DetailedTable';
 import TableLegend from '@/components/LeagueTable/Legend';
 import SuspenseLoader from '@/components/SuspenseLoader/SuspenseLoader';
 import PositionsHistory from '@/components/PositionsHistory/PositionsHistory';
 import { getPositionChartConfig } from '@/components/LeagueTable/position-chart-config';
-import { ITeam } from '@/interfaces';
+import useStandings from '@/hooks/useStandings';
 import {
   useGetFirstLeagueStandingsQuery,
   useGetFirstLeaguePositionsHistoryQuery
@@ -15,13 +13,9 @@ import {
 
 export default function Standings() {
   const theme = useTheme();
-  const dispatch = useAppDispatch();
-  const [openTeamSelect, setOpenTeamSelect] = useState<boolean>(false);
-  const [currentTeam, setCurrentTeam] = useState('');
-  const [currentSeries, setCurrentSeries] = useState<number[]>([]);
-  const [teams, setTeams] = useState<ITeam[]>([]);
-
   const positionsChartsConfig = getPositionChartConfig(theme);
+  const [openTeamSelect, setOpenTeamSelect] = useState<boolean>(false);
+
   const {
     data: standingsData,
     isLoading: standingsLoading,
@@ -33,22 +27,17 @@ export default function Standings() {
     isError: positionsHistoryError
   } = useGetFirstLeaguePositionsHistoryQuery();
 
-  useEffect(() => {
-    if (positionsHistoryData) {
-      setCurrentSeries(positionsHistoryData['Abramczyk Polonia Bydgoszcz']);
-      const teamsData = Object.keys(positionsHistoryData).map((team) => {
-        return { name: team };
-      });
-      setTeams(teamsData);
-      setCurrentTeam(teamsData[0].name);
-    }
-  }, [positionsHistoryData]);
+  const {
+    teams,
+    currentTeam,
+    setCurrentTeam,
+    currentSeries,
+    setCurrentSeries
+  } = useStandings(positionsHistoryData, standingsData);
 
   if (standingsLoading || positionsHistoryLoading) {
     return <SuspenseLoader />;
   }
-
-  console.log(standingsData);
 
   return (
     <Grid
